@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href=""
+/>
+{% endblock %} {% block content %}
+
+<section >
+  <h1>Cars List</h1>
+  
+</section>
+
+<section >
+  {% for car in cars %}
+  <div>
+    <div class="card-content">
+      <div class="card-img-container">
+        <img src = "GTR_R34.jpg">
+        <p>bjhbbbhbhb</p>
+      </div>
+      <h2 class="card-title">{{ car.name }}</h2>
+      <p><small>{{ car.price }}</small></p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
