@@ -9,34 +9,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" type="image/png" href="" />
   <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-  <title>Cat Collector</title>
+  <title>Sayyarati</title>
   {% block head %}
   {% endblock %}
 </head>
 
 <body>
   <header>
-    <div class="header-logo-container">
+    <div class="">
       <a href="/">
-        <img src="" alt="The Cat Collector Logo" />
+        <img src="" alt="Sayyarati Logo" />
       </a>
     </div>
     <nav>
       <ul>
-        <!-- <li><a href="{% url 'cat-index' %}">....</a></li>
-        <li><a href="{% url 'toy-index' %}">....</a></li>
-        <li><a href="{% url 'cat-create' %}">....</a></li>
-        <li><a href="{% url 'toy-create' %}">.....</a></li>
-        <li><a href="{% url 'about' %}">About</a></li> -->
-        <li>
-          <form id="logout-form" method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Log out</button>
-          </form>
-        </li>
+        {% if user.is_authenticated %}
+          <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+          </li>
         {% else %}
-        <!-- <li><a href="{% url 'about' %}">About</a></li> -->
-        <!-- <li><a href="{% url 'home' %}">Login</a></li> -->
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
