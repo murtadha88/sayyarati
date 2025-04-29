@@ -26,9 +26,7 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
 
-# views.py
-
-def cars_inventory(request):
+def cars(request):
     cars = Car.objects.all()
     return render(request, 'cars/index.html', {'cars': cars})
 
