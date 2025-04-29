@@ -86,7 +86,7 @@ class Car(models.Model):
         default=BRANDS[0][0]
     )
     name = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='car_images/', null=True, blank=True)
     year_model = models.IntegerField()
     type=models.CharField(
         max_length=50,

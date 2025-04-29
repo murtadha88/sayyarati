@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
+from .models import Car
 
 class Login(LoginView):
     template_name = 'login.html'
@@ -23,3 +24,7 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
+
+def car_detail(request, car_id):
+    car = Car.objects.get(id=car_id)
+    return render(request, 'cars/details.html', {'car': car})
