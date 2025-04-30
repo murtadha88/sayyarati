@@ -16,7 +16,11 @@
     <div>
         <div class="card-content">
           <div class="card-img-container">
+            {% if car.image %}
             <img src="{{ car.image.url }}" alt="{{ car.name }}">
+            {% else %}
+            <p>No Image</p>
+            {% endif %}
           </div>
           <h1 class="card-name">{{ car.name }}</h1>
           <h3 class="card-price">Car Price: {{ car.buy_price }}</h3>

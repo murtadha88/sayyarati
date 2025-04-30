@@ -28,7 +28,7 @@
           <a href="{% url 'cars' %}">My Cars</a>
         </li>
         <li>
-          <a href="">Add Car</a>
+          <a href="{% url 'car-create' %}">Add Car</a>
         </li>
         <li>
           <form id="logout-form" method="post" action="{% url 'logout' %}">
@@ -36,7 +36,6 @@
             <button type="submit">Log out</button>
           </form>
         </li>
-          <li><a href="{% url 'car-create' %}">Add a Cat</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
         <li><a href="{% url 'signup' %}">Signup</a></li>
