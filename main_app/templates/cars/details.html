@@ -11,7 +11,7 @@
     <p>No image available.</p>
     {% endif %}
     <div>
-        <h1>{{ car.brand  }} {{ car.name  }} ({{ car.year_model }})</h1>
+        <h1>{{ car.brand }} {{ car.name }} ({{ car.year_model }})</h1>
         <h2>{{ car.car_id }} </h2>
         <p><strong>Description:</strong> {{ car.description }}</p>
         <p><strong>Type:</strong> {{ car.type }}</p>
@@ -20,26 +20,66 @@
         <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
         {% endif %}
         <p><strong>Buy Price:</strong> {{ car.buy_price }}</p>
+        <p><strong>Total Cost:</strong> {{ car.total_cost }}</p>
         <p><strong>Status:</strong> {{ car.status }}</p>
+
+        <hr>
+
+        {% if car.status != 'Sold' %}
+        <h3>Add a Expenses</h3>
+        <form  action="{% url 'add-expenses' car.id %}" method="post" autocomplete="off">
+            {% csrf_token %}
+            {{ expenses_form.as_p }}
+            <button type="submit">Add Expenses</button>
+        </form>
+        {% endif %}
+
+        <br>
+
+        <table>
+            <caption>Expenses</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expenses in car.expenses_set.all %}
+                <tr>
+                    <td>{{expenses.name}}</td>
+                    <td>{{expenses.cost}}</td>
+                    <td>{{expenses.expense_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <hr>
 
         {% if car.status == 'Sold' %}
         <table>
             <caption>Selling Details</caption>
-            <tr>
-                <th>Buy Price</th>
-                <th>Sell Price</th>
-                <th>Total Cost</th>
-                <th>Profit</th>
-                <th>Profit Margin (%)</th>
-            </tr>
-            <tr>
-                <td>{{car.buy_price}}</td>
-                <td>{{car.sell_price}}</td>
-                <td>{{car.total_cost}}</td>
-                <td>{{car.profit}}</td>
-                <td>{{car.profit_percentage}}</td>
-            </tr>
-        </table>  
+            <thead>
+                <tr>
+                    <th>Buy Price</th>
+                    <th>Sell Price</th>
+                    <th>Total Cost</th>
+                    <th>Profit</th>
+                    <th>Profit Margin (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{car.buy_price}}</td>
+                    <td>{{car.sell_price}}</td>
+                    <td>{{car.total_cost}}</td>
+                    <td>{{car.profit}}</td>
+                    <td>{{car.profit_percentage}}</td>
+                </tr>
+            </tbody>
+        </table>
         {% endif %}
 
 

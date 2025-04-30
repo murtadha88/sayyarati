@@ -119,3 +119,6 @@ class Expenses(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+    
+    class Meta:
+        ordering = ['-expense_date']
