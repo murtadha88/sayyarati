@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('cars/', views.cars, name='cars'),
     path('cars/<int:car_id>/', views.car_detail, name='car-detail'),
+    path('cars/create/', views.CarCreate.as_view(), name='car-create'),
 ]
 
 if settings.DEBUG:

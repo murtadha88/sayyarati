@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 TYPE = (
     ("Sedan", "Sedan"),
     ("SUV", "SUV"),
@@ -95,11 +95,11 @@ class Car(models.Model):
     )
     description = models.TextField()
     buy_date = models.DateField()
-    sell_date = models.DateField()
+    sell_date = models.DateField(null=True, blank=True)
     buy_price = models.FloatField()
     total_cost = models.FloatField()
-    profit = models.FloatField()
-    profit_percentage = models.FloatField()
+    profit = models.FloatField(null=True, blank=True)
+    profit_percentage = models.FloatField(null=True, blank=True)
     status =  models.CharField(
         max_length=50,
         choices=STATUS,
@@ -110,7 +110,9 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.brand} {self.name} ({self.car_id})"
     
-
+    def get_absolute_url(self):
+        return reverse('car-detail', kwargs={'car_id': self.id})
+    
 class Expenses(models.Model):
     name = models.CharField(max_length=100)
     cost = models.FloatField()

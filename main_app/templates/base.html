@@ -30,6 +30,7 @@
                 <button type="submit">Log out</button>
               </form>
           </li>
+          <li><a href="{% url 'car-create' %}">Add a Cat</a></li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'signup' %}">Signup</a></li>
