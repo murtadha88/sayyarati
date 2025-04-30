@@ -11,9 +11,38 @@
     <p>No image available.</p>
     {% endif %}
     <div>
-        <h1>{{ car.brand  }} {{ car.name  }}</h1>
+        <h1>{{ car.brand  }} {{ car.name  }} ({{ car.year_model }})</h1>
         <h2>{{ car.car_id }} </h2>
-        <!-- <p>{{ car.description }}</p> -->
+        <p><strong>Description:</strong> {{ car.description }}</p>
+        <p><strong>Type:</strong> {{ car.type }}</p>
+        <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
+        {% if car.status == 'sold' %}
+        <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
+        {% endif %}
+        <p><strong>Buy Price:</strong> {{ car.buy_price }}</p>
+        <p><strong>Status:</strong> {{ car.status }}</p>
+
+        {% if car.status == 'Sold' %}
+        <table>
+            <caption>Selling Details</caption>
+            <tr>
+                <th>Buy Price</th>
+                <th>Sell Price</th>
+                <th>Total Cost</th>
+                <th>Profit</th>
+                <th>Profit Margin (%)</th>
+            </tr>
+            <tr>
+                <td>{{car.buy_price}}</td>
+                <td>{{car.sell_price}}</td>
+                <td>{{car.total_cost}}</td>
+                <td>{{car.profit}}</td>
+                <td>{{car.profit_percentage}}</td>
+            </tr>
+        </table>  
+        {% endif %}
+
+
     </div>
 </section>
 {% endblock %}
