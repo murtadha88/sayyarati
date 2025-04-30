@@ -5,21 +5,23 @@
 />
 {% endblock %} {% block content %}
 
-<section >
-  <h1>Cars List</h1>
-  
-</section>
+
+<h1>Cars List</h1>
+<button >Add Car</button>
+
 
 <section >
   {% for car in cars %}
   <div>
-    <div class="card-content">
-      <div class="card-img-container">
-        <img src="{{ car.image.url }}" alt="{{ car.name }}">
-        <p>bjhbbbhbhb</p>
-      </div>
-      <h2 class="card-title">{{ car.name }}</h2>
-      <p><small>{{ car.price }}</small></p>
+    <div>
+        <div class="card-content">
+          <div class="card-img-container">
+            <img src="{{ car.image.url }}" alt="{{ car.name }}">
+          </div>
+          <h1 class="card-name">{{ car.name }}</h1>
+          <h3 class="card-price">Car Price: {{ car.buy_price }}</h3>
+          <h3 class="card-price">Car Status: {{ car.status }}</h3>
+          <button > <a href="/cars/{{ car.id }}">More</a></button>
     </div>
   </div>
   {% endfor %}
