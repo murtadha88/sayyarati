@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from .models import Car
+from .forms import ExpensesForm
 
 from .models import Car
 class Login(LoginView):
@@ -32,4 +33,18 @@ def cars(request):
 
 def car_detail(request, car_id):
     car = Car.objects.get(id=car_id)
-    return render(request, 'cars/details.html', {'car': car})
+    expenses_form = ExpensesForm()
+    return render(request, 'cars/details.html', {'car': car , 'expenses_form': expenses_form})
+
+def add_expenses(request, car_id):
+    form = ExpensesForm(request.POST)
+    if form.is_valid():
+        new_expenses = form.save(commit=False)
+        new_expenses.car_id = car_id
+        new_expenses.save()
+
+        car = Car.objects.get(id=car_id)
+        car.total_cost += new_expenses.cost
+        car.save()
+
+    return redirect('car-detail', car_id=car_id)
