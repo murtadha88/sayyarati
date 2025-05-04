@@ -19,8 +19,8 @@
         {% if car.status == 'sold' %}
         <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
         {% endif %}
-        <p><strong>Buy Price:</strong> {{ car.buy_price }}</p>
-        <p><strong>Total Cost:</strong> {{ car.total_cost }}</p>
+        <p><strong>Buy Price:</strong> {{ car.buy_price }} BHD</p>
+        <p><strong>Total Cost:</strong> {{ car.total_cost }} BHD</p>
         <p><strong>Status:</strong> {{ car.status }}</p>
 
         <hr>
@@ -30,11 +30,18 @@
             <a href="{% url 'car-delete' car.id %}">Delete</a>
           </div>
         {% if car.status != 'Sold' %}
-        <h3>Add a Expenses</h3>
-        <form  action="{% url 'add-expenses' car.id %}" method="post" autocomplete="off">
+        <h3>{% if editing %}Edit Expense{% else %}Add Expenses{% endif %}</h3>
+        <form method="post"
+            action="{% if editing %}{% url 'update-expense-inline' car.id edit_expense_id %}{% else %}{% url 'add-expenses' car.id %}{% endif %}"
+            autocomplete="off">
             {% csrf_token %}
             {{ expenses_form.as_p }}
-            <button type="submit">Add Expenses</button>
+            <button type="submit">
+                {% if editing %}Update{% else %}Add Expenses{% endif %}
+            </button>
+            {% if editing %}
+            <a href="{% url 'car-detail' car.id %}">Cancel</a>
+            {% endif %}
         </form>
         {% endif %}
 
@@ -48,14 +55,28 @@
                     <th>Name</th>
                     <th>Cost</th>
                     <th>Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for expenses in car.expenses_set.all %}
                 <tr>
                     <td>{{expenses.name}}</td>
-                    <td>{{expenses.cost}}</td>
+                    <td>{{expenses.cost}} BHD</td>
                     <td>{{expenses.expense_date}}</td>
+                    <td>
+                        <a href="{% url 'car-detail' car.id %}?edit_expense_id={{ expenses.id }}">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1057/1057097.png" alt="Edit Icon"
+                                width="20" height="20">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'expense-delete' car.id expenses.id %}">
+                            <img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
+                                alt="Delete Icon" width="20" height="20">
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -77,14 +98,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{car.buy_price}}</td>
-                    <td>{{car.sell_price}}</td>
-                    <td>{{car.total_cost}}</td>
-                    <td>{{car.profit}}</td>
-                    <td>{{car.profit_percentage}}</td>
+                    <td>{{car.buy_price}} BHD</td>
+                    <td>{{car.sell_price}} BHD</td>
+                    <td>{{car.total_cost}} BHD</td>
+                    <td>{{car.profit}} BHD</td>
+                    <td>{{ car.profit_percentage|floatformat:2 }}%</td>
                 </tr>
             </tbody>
         </table>
+        {% else %}
+        <button onclick="document.getElementById('sellModal').style.display='block'">Sell</button>
+
+        <div id="sellModal" style="display:none;">
+            <form action="{% url 'sell-car' car.id %}" method="POST">
+                {% csrf_token %}
+                <label for="sell_price">Enter Selling Price:</label>
+                <input type="number" name="sell_price" required>
+                <button type="submit">Confirm Sale</button>
+                <button type="button"
+                    onclick="document.getElementById('sellModal').style.display='none'">Cancel</button>
+            </form>
+        </div>
         {% endif %}
 
 

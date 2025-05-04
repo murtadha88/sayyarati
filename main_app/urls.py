@@ -18,6 +18,9 @@ urlpatterns = [
     path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='car-update'),
     path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='car-delete'),
     path('cars/history', views.cars_history, name='cars-history'),
+    path('cars/<int:car_id>/expenses/<int:pk>/edit/', views.update_expense_inline, name='update-expense-inline'),
+    path('cars/<int:car_id>/expenses/<int:pk>/delete/', views.ExpenseDelete.as_view(), name='expense-delete'),
+    path('cars/<int:car_id>/sell/', views.sell_car, name='sell-car'),
 ]
 
 if settings.DEBUG:

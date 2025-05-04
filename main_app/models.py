@@ -97,6 +97,7 @@ class Car(models.Model):
     buy_date = models.DateField()
     sell_date = models.DateField(null=True, blank=True)
     buy_price = models.FloatField()
+    sell_price = models.FloatField(null=True, blank=True)
     total_cost = models.FloatField()
     profit = models.FloatField(null=True, blank=True)
     profit_percentage = models.FloatField(null=True, blank=True)
