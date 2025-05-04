@@ -52,11 +52,11 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 def cars(request):
-    cars = Car.objects.all()
+    cars = Car.objects.filter(user=request.user)
     return render(request, 'cars/index.html', {'cars': cars})
 
 def cars_history(request):
-    cars = Car.objects.all()
+    cars = Car.objects.filter(user=request.user)
     return render(request, 'cars/history.html', {'cars': cars})
 
 def car_detail(request, car_id):
