@@ -16,36 +16,38 @@
 
 <body>
   <header>
-    <div class="">
-      <a href="/">
-        <img src="" alt="Sayyarati Logo" />
-      </a>
+    <div class="header-container">
+        <img src="https://i.imgur.com/0jMx4q2.png" alt="Sayyarati Logo">
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'cars' %}">My Cars</a>
+                </li>
+                <li>
+                    <a href="{% url 'car-create' %}">Add Car</a>
+                </li>
+                <li>
+                    <a href="{% url 'cars-history' %}">History</a>
+                </li>
+                <li class="nav-right">
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Log out</button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-right">
+                    <a href="{% url 'signup' %}">Signup</a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}" >Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
-    <nav>
-      <ul>
-        {% if user.is_authenticated %}
-        <li>
-          <a href="{% url 'cars' %}">My Cars</a>
-        </li>
-        <li>
-          <a href="{% url 'car-create' %}">Add Car</a>
-        </li>
-        <li>
-          <a href="{% url 'cars-history' %}">History</a>
-        </li>
-        <li>
-          <form id="logout-form" method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Log out</button>
-          </form>
-        </li>
-        {% else %}
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'signup' %}">Signup</a></li>
-        {% endif %}
-      </ul>
-    </nav>
-  </header>
+</header>
   <main>
     {% block content %}
     {% endblock %}

@@ -1,8 +1,14 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block head %}
-
-{% endblock %} 
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 {% block content %}
-<h1>Home</h1>
+<img src="https://i.imgur.com/JaLnKY7.png" alt="Sayyarati Logo">
+<p>Manage your car inventory with Sayyarati, where you can track your cars information easily and quickly</p>
+
+<div class="auth-buttons">
+    <a href="{% url 'signup' %}">Sign up</a>
+    <a href="{% url 'login' %}">Log in</a>
+</div>
 {% endblock %}

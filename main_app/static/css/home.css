@@ -1,0 +1,57 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+main p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.auth-buttons a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.auth-buttons a:first-child {
+    background-color: #032B59;
+    color: white;
+}
+
+.auth-buttons a:first-child:hover {
+    background-color: #0069d9;
+}
+
+.auth-buttons a:last-child {
+    border: 1px solid #032B59;
+    color: #032B59;
+}
+
+.auth-buttons a:last-child:hover {
+    background-color: #cddff5;
+}

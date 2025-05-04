@@ -1,4 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --main-color: #032B59;
+    --secondary-color: #042346;
+    --accent-color: #007bff;
+    --text-color: #ffffff;
+    --hover-color: #05478a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: white;
-    margin: 50px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--main-color);
+    padding: 1.2rem 3rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header-container img {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Jaini', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.auth-button {
+    background-color: transparent;
+    color: var(--text-color);
+    font-weight: 700;
+    border: 2px solid var(--text-color);
+}
+
+.auth-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#logout-form button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-family: 'Jaini', sans-serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+#logout-form button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+main {
+    flex: 1;
+    padding: 3rem;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .header-container img {
+        height: 40px;
+    }
+
+    nav ul {
+        gap: 1.2rem;
+    }
+
+    nav a {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.1rem;
+    }
 }
