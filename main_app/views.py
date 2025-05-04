@@ -35,7 +35,7 @@ class CarDelete(DeleteView):
     template_name = 'cars/car_confirm_delete.html'
 
 def home(request):
-    return render(request, 'base.html')
+    return render(request, 'home.html')
 
 def signup(request):
     error_message = ''
