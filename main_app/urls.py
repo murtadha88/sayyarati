@@ -15,6 +15,9 @@ urlpatterns = [
         views.add_expenses, 
         name='add-expenses'
     ),
+    path('cars/<int:pk>/update/', views.CarUpdate.as_view(), name='car-update'),
+    path('cars/<int:pk>/delete/', views.CarDelete.as_view(), name='car-delete'),
+    path('cars/history', views.cars_history, name='cars-history'),
 ]
 
 if settings.DEBUG:

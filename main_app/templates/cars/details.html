@@ -25,6 +25,10 @@
 
         <hr>
 
+        <div>
+            <a href="{% url 'car-update' car.id %}" >Edit</a>
+            <a href="{% url 'car-delete' car.id %}">Delete</a>
+          </div>
         {% if car.status != 'Sold' %}
         <h3>Add a Expenses</h3>
         <form  action="{% url 'add-expenses' car.id %}" method="post" autocomplete="off">
@@ -35,6 +39,7 @@
         {% endif %}
 
         <br>
+        
 
         <table>
             <caption>Expenses</caption>
