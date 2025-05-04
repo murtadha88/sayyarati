@@ -7,13 +7,13 @@
 
 
 <h1>Cars List</h1>
-<button > <a href="{% url 'car-create' %}">Add Car</a></button>
+
 
 
 <section >
 
   {% for car in cars %}
-  {% if car.status != "Sold" %}
+  {% if car.status == "Sold" %}
   <div>
     <div>
         <div class="card-content">

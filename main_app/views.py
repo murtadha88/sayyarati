@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Car
 from .forms import ExpensesForm
+from .forms import CarForm
 
 from .models import Car
 class Login(LoginView):
@@ -12,14 +13,25 @@ class Login(LoginView):
 
 class CarCreate(CreateView):
     model = Car
-    fields = ['car_id','brand','name','year_model','type','buy_date','buy_price','status','description','image']
+    form_class = CarForm
     template_name = 'cars/car_form.html'
+    success_url = '/cars/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.total_cost = form.cleaned_data['buy_price']  
         return super().form_valid(form)
-    
+
+class CarUpdate(UpdateView):
+    model = Car
+    form_class = CarForm
+    template_name = 'cars/car_form.html'
+
+class CarDelete(DeleteView):
+    model = Car
+    success_url = '/cars/'
+    template_name = 'cars/car_confirm_delete.html'
+
 def home(request):
     return render(request, 'base.html')
 
@@ -40,6 +52,10 @@ def signup(request):
 def cars(request):
     cars = Car.objects.all()
     return render(request, 'cars/index.html', {'cars': cars})
+
+def cars_history(request):
+    cars = Car.objects.all()
+    return render(request, 'cars/history.html', {'cars': cars})
 
 def car_detail(request, car_id):
     car = Car.objects.get(id=car_id)
