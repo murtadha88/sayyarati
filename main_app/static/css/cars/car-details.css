@@ -1,0 +1,251 @@
+.car-detail-page {
+    padding: 0 2rem 2rem 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.car-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.car-title-row .car-title {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #032B59;
+    font-family: 'Jaini', cursive;
+}
+
+.car-detail-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.car-info-box {
+    background-color: #d8e0ea;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    flex: 1;
+    min-width: 300px;
+}
+
+.car-detail-container {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.car-image-box {
+    flex: 1;
+    min-width: 300px;
+    background-color: #d8e0ea;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-image-box img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border: 3px solid #032B59;
+    border-radius: 10px;
+}
+
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.action-buttons button,
+.action-buttons a {
+    background-color: #032B59;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Jaini', cursive;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.action-buttons button:hover,
+.action-buttons a:hover {
+    background-color: #05478a;
+}
+
+.expenses-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    background-color: #d8e0ea;
+    border-radius: 1rem;
+    padding: 1.5rem;  
+}
+
+.expenses-table {
+    flex: 2;
+}
+
+.expense-form-box button,
+.expense-form-box .btn-cancel {
+    background-color: #032B59;
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    font-family: 'Jaini', cursive;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+.expense-form {
+    flex: 1;
+    min-width: 280px;
+    border-right: 2px solid #032B59;
+}
+
+.expense-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.expense-form input {
+    width: 95%;
+    padding: 0.5rem;
+    border: 2px solid #032B59;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.expense-form button {
+    background-color: #032B59;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.expense-form button:hover {
+    background-color: #054086;
+}
+
+.expense-table th,
+.expense-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.expense-table th {
+    border-bottom: 2px solid #ccc;
+    font-weight: 600;
+}
+
+.expense-table td {
+    border-bottom: 1px solid #ccc;
+}
+
+.expense-table svg {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.expense-table svg:hover {
+    transform: scale(1.2);
+}
+
+.expenses-table h3,
+.sell-details-table h3, 
+.car-info-box h3,
+.expense-form h3 {
+    font-family: 'Jaini', cursive;
+    font-size: 1.6rem;
+    color: #032B59;
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 0.8rem;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.sell-modal {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid #032B59;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 300px;
+}
+
+.sell-modal input {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.btn-confirm {
+    background-color: #032B59;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-cancel {
+    background-color: red;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+}
