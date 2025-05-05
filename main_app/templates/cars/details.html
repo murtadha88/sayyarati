@@ -1,92 +1,107 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/cars/car-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/cars/car-details.css' %}">
 {% endblock %}
+
 {% block content %}
-<section>
-    {% if car.image %}
-    <img src="{{ car.image.url }}" alt="{{ car.name }}">
-    {% else %}
-    <p>No image available.</p>
-    {% endif %}
-    <div>
-        <h1>{{ car.brand }} {{ car.name }} ({{ car.year_model }})</h1>
-        <h2>{{ car.car_id }} </h2>
-        <p><strong>Description:</strong> {{ car.description }}</p>
-        <p><strong>Type:</strong> {{ car.type }}</p>
-        <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
-        {% if car.status == 'sold' %}
-        <p><strong>Buy Date:</strong> {{ car.buy_date }}</p>
-        {% endif %}
-        <p><strong>Buy Price:</strong> {{ car.buy_price }} BHD</p>
-        <p><strong>Total Cost:</strong> {{ car.total_cost }} BHD</p>
-        <p><strong>Status:</strong> {{ car.status }}</p>
-
-        <hr>
-
-        <div>
-            <a href="{% url 'car-update' car.id %}" >Edit</a>
-            <a href="{% url 'car-delete' car.id %}">Delete</a>
-          </div>
-        {% if car.status != 'Sold' %}
-        <h3>{% if editing %}Edit Expense{% else %}Add Expenses{% endif %}</h3>
-        <form method="post"
-            action="{% if editing %}{% url 'update-expense-inline' car.id edit_expense_id %}{% else %}{% url 'add-expenses' car.id %}{% endif %}"
-            autocomplete="off">
-            {% csrf_token %}
-            {{ expenses_form.as_p }}
-            <button type="submit">
-                {% if editing %}Update{% else %}Add Expenses{% endif %}
-            </button>
-            {% if editing %}
-            <a href="{% url 'car-detail' car.id %}">Cancel</a>
+<div class="car-detail-page">
+    <div class="car-title-row">
+        <h1 class="car-title">{{ car.name }}</h1>
+        <div class="action-buttons">
+            {% if car.status != 'Sold' %}
+            <button onclick="openModal()" class="btn-sell">Sell</button>
             {% endif %}
-        </form>
+            <a href="{% url 'car-update' car.id %}" class="btn-edit">Edit</a>
+            <a href="{% url 'car-delete' car.id %}" class="btn-delete">Delete</a>
+        </div>
+    </div>
+
+
+    <div class="car-detail-container">
+        <div class="car-info-box">
+            <h3>Car Details</h3>
+            <p><strong>Description:</strong> {{ car.description }}</p> <br>
+            <p><strong>Type:</strong> {{ car.type }}</p> <br>
+            <p><strong>Buy Date:</strong> {{ car.buy_date }}</p> <br>
+            <p><strong>Buy Price:</strong> {{ car.buy_price }} BHD</p> <br>
+            <p><strong>Total Cost:</strong> {{ car.total_cost }} BHD</p> <br>
+            <p><strong>Status:</strong> {{ car.status }}</p>
+        </div>
+
+        <div class="car-image-box">
+            {% if car.image %}
+            <img src="{{ car.image.url }}" alt="{{ car.name }}">
+            {% else %}
+            <p>No Image Available</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if car.status != 'Sold' %}
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
+        <div id="sellModal" class="sell-modal" onclick="event.stopPropagation()">
+            <form action="{% url 'sell-car' car.id %}" method="POST">
+                {% csrf_token %}
+                <label for="sell_price">Enter Selling Price:</label>
+                <input type="number" name="sell_price" required>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-confirm">Confirm Sale</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="expenses-section">
+        {% if car.status != 'Sold' %}
+        <div class="expense-form">
+            <h3>{% if editing %}Edit Expense{% else %}Add Expenses{% endif %}</h3>
+            <form method="post"
+                action="{% if editing %}{% url 'update-expense-inline' car.id edit_expense_id %}{% else %}{% url 'add-expenses' car.id %}{% endif %}"
+                autocomplete="off">
+                {% csrf_token %}
+                {{ expenses_form.as_p }}
+                <button type="submit" class="btn-add-expense">{% if editing %}Update{% else %}Add{% endif %}</button>
+                {% if editing %}
+                <a href="{% url 'car-detail' car.id %}" class="btn-cancel">Cancel</a>
+                {% endif %}
+            </form>
+        </div>
         {% endif %}
 
-        <br>
-        
+        <div class="expenses-table">
+            <h3>Expenses</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th>Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expenses in car.expenses_set.all %}
+                    <tr>
+                        <td>{{ expenses.name }}</td>
+                        <td>{{ expenses.cost }} BHD</td>
+                        <td>{{ expenses.expense_date }}</td>
+                        <td><a href="{% url 'car-detail' car.id %}?edit_expense_id={{ expenses.id }}">✎</a></td>
+                        <td><a href="{% url 'expense-delete' car.id expenses.id %}">🗑️</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    {% if car.status == 'Sold' %}
+    <div class="sell-details-table">
+        <h3>Selling Details</h3>
         <table>
-            <caption>Expenses</caption>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Cost</th>
-                    <th>Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for expenses in car.expenses_set.all %}
-                <tr>
-                    <td>{{expenses.name}}</td>
-                    <td>{{expenses.cost}} BHD</td>
-                    <td>{{expenses.expense_date}}</td>
-                    <td>
-                        <a href="{% url 'car-detail' car.id %}?edit_expense_id={{ expenses.id }}">
-                            <img src="https://cdn-icons-png.flaticon.com/512/1057/1057097.png" alt="Edit Icon"
-                                width="20" height="20">
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'expense-delete' car.id expenses.id %}">
-                            <img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
-                                alt="Delete Icon" width="20" height="20">
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <hr>
-
-        {% if car.status == 'Sold' %}
-        <table>
-            <caption>Selling Details</caption>
             <thead>
                 <tr>
                     <th>Buy Price</th>
@@ -98,30 +113,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{car.buy_price}} BHD</td>
-                    <td>{{car.sell_price}} BHD</td>
-                    <td>{{car.total_cost}} BHD</td>
-                    <td>{{car.profit}} BHD</td>
+                    <td>{{ car.buy_price }} BHD</td>
+                    <td>{{ car.sell_price }} BHD</td>
+                    <td>{{ car.total_cost }} BHD</td>
+                    <td>{{ car.profit }} BHD</td>
                     <td>{{ car.profit_percentage|floatformat:2 }}%</td>
                 </tr>
             </tbody>
         </table>
-        {% else %}
-        <button onclick="document.getElementById('sellModal').style.display='block'">Sell</button>
-
-        <div id="sellModal" style="display:none;">
-            <form action="{% url 'sell-car' car.id %}" method="POST">
-                {% csrf_token %}
-                <label for="sell_price">Enter Selling Price:</label>
-                <input type="number" name="sell_price" required>
-                <button type="submit">Confirm Sale</button>
-                <button type="button"
-                    onclick="document.getElementById('sellModal').style.display='none'">Cancel</button>
-            </form>
-        </div>
-        {% endif %}
-
-
     </div>
-</section>
+    {% endif %}
+</div>
+<script>
+    function closeModal() {
+        document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function openModal() {
+        document.getElementById('modalOverlay').style.display = 'flex';
+    }
+</script>
+
 {% endblock %}

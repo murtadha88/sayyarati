@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --main-color: #032B59;
+    --secondary-color: #042346;
+    --accent-color: #007bff;
+    --text-color: #ffffff;
+    --hover-color: #05478a;
+}
+
+.cars-page {
+    padding: 2rem;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.cars-title {
+    font-family: 'Jaini', cursive;
+    font-size: 2.8rem;
+    color: var(--main-color);
+    margin-left: 7px;
+}
+
+.add-car-button {
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 0.4rem;
+    transition: background-color 0.3s ease;
+}
+.add-car-button span{
+    background-color: rgba(3,43,89, 0.34);
+    padding: 2.5px 10px;
+    border-radius: 50px;
+    font-size: 20px;
+}
+
+.add-car-button span:hover {
+    background-color: var(--hover-color);
+    color: white;
+}
+
+.cars-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+    justify-content: center;
+}
+
+.car-card {
+    width: 330px;
+    background: white;
+    border: 3px solid var(--main-color);
+    border-radius: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.car-img-container {
+    height: 200px;
+    background-color: #e0e0e0;
+}
+
+.car-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.car-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.car-price,
+.car-status {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+}
+
+.car-status {
+    margin-bottom: 0.8rem;
+}
+
+.status-available {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.status-inventory {
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.status-sold {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.car-status strong {
+    color: black;
+}
+
+.btn-more {
+    background-color: var(--main-color);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    margin: 0 auto 1rem auto;
+    border-radius: 10px;
+    text-decoration: none;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+
+.btn-more:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .cars-page {
+        padding: 1rem;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

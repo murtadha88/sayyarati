@@ -1,37 +1,33 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link
-  rel="stylesheet"
-  href=""
-/>
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/cars/cars.css' %}">
+{% endblock %}
 
-
-<h1>Cars List</h1>
-
-
-
-<section >
-
-  {% for car in cars %}
-  {% if car.status == "Sold" %}
-  <div>
-    <div>
-        <div class="card-content">
-          <div class="card-img-container">
-            {% if car.image %}
-            <img src="{{ car.image.url }}" alt="{{ car.name }}">
-            {% else %}
-            <p>No Image</p>
-            {% endif %}
-          </div>
-          <h1 class="car-name">{{ car.name }}</h1>
-          <h3 class="car-price">Car Price: {{ car.buy_price }}</h3>
-          <h3 class="car-status">Car Status: {{ car.status }}</h3>
-          <button > <a href="/cars/{{ car.id }}">More</a></button>
-    </div>
+{% block content %}
+<div class="cars-page">
+  <div class="page-header">
+      <h1 class="cars-title">History Cars</h1>
   </div>
-  {%endif%}
-  {% endfor %}
-</section>
 
+  <div class="cars-grid">
+      {% for car in cars %}
+          {% if car.status == "Sold" %}
+          <div class="car-card">
+              <div class="car-img-container">
+                  {% if car.image %}
+                  <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                  {% else %}
+                  <p>No Image Available</p>
+                  {% endif %}
+              </div>
+              <h2 class="car-name">{{ car.name }}</h2>
+              <p class="car-price"><strong>Price:</strong> {{ car.buy_price }} BHD</p>
+              <p class="car-status status-sold"><strong>Status:</strong> {{ car.status }}</p>
+              <a class="btn-more" href="/cars/{{ car.id }}">More</a>
+          </div>
+          {% endif %}
+      {% endfor %}
+  </div>
+</div>
 {% endblock %}
