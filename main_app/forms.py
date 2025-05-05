@@ -1,6 +1,48 @@
 from django import forms
 from .models import Expenses
 from .models import Car
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Username'
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Password'
+        })
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+class SignUpForm(UserCreationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Username'
+        })
+    )
+    password1 = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Password'
+        })
+    )
+    password2 = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Confirm Password'
+        })
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']
+    
 class ExpensesForm(forms.ModelForm):
     class Meta:
         model = Expenses

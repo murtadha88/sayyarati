@@ -2,10 +2,10 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from .forms import CustomLoginForm
 urlpatterns = [
     path('', views.home, name='home'),
-    path('accounts/login/', views.Login.as_view(), name='login'),
+    path('accounts/login/', views.CustomLoginView.as_view(), name='login'),
     path('accounts/signup/', views.signup, name='signup'),
     path('cars/', views.cars, name='cars'),
     path('cars/<int:car_id>/', views.car_detail, name='car-detail'),

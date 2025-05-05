@@ -6,11 +6,15 @@ from django.views.generic.edit import CreateView , UpdateView, DeleteView
 from .models import Car, Expenses
 from .forms import ExpensesForm
 from .forms import CarForm
+from .forms import SignUpForm
 from django.utils import timezone
 
 
 from .models import Car
-class Login(LoginView):
+from .forms import CustomLoginForm
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomLoginForm
     template_name = 'login.html'
 
 class CarCreate(CreateView):
@@ -40,7 +44,7 @@ def home(request):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)

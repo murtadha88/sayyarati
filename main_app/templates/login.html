@@ -1,14 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}" />
 {% endblock %}
 {% block content %}
-<section>
+
+  <h1 class="header">Manage Your Car Inventory Easily With Sayyarati </h1>
+<div class="container">
+  <div class="img-container">
+    <div class="instructions">
+      <p class="instructions-paragraph">Enter Your Username and Passowrd Correctly To Manage Your Car Inventory</p>
+    </div>
+  </div>
+  <div class="form-container">
+    <h1 class="h1-auth">Login</h1>
   <form action="{% url 'login' %}" method="post" class="login">
-    <h1>Login</h1>
-    {% csrf_token %} {{ form.as_p }}
+    
+    {% csrf_token %} 
+    <lable>Username</lable>
+    <div class="form-group">
+      <input type="text" required>
+  </div>
+  <lable>Password</lable>
+  <div class="form-group">
+      <input type="password" required >
+  </div>
     <input type="hidden" name="next" value="{{ next }}" />
     <button type="submit">Login</button>
   </form>
-</section>
+  <p>Don't have an account? <a href="{% url 'signup' %}">SIGN UP</a></p>
+    </div>
+  </div>
+
 {% endblock %}
