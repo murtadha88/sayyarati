@@ -7,14 +7,10 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Username'
-        })
+        widget=forms.TextInput()
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Password'
-        })
+        widget=forms.PasswordInput()
     )
 
     def __init__(self, *args, **kwargs):
@@ -22,21 +18,13 @@ class CustomLoginForm(AuthenticationForm):
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Username'
-        })
+        widget=forms.TextInput()
     )
     password1 = forms.CharField(
-        label='',
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Password'
-        })
+        widget=forms.PasswordInput()
     )
     password2 = forms.CharField(
-        label='',
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Confirm Password'
-        })
+        widget=forms.PasswordInput()
     )
 
     class Meta:
