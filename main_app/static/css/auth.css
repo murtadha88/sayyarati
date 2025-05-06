@@ -4,7 +4,6 @@ body {
     font-family: 'Tajawal', sans-serif;
     display: flex;
     flex-direction: column;
-    background: url("https://i.imgur.com/cwdC8en.png");
     overflow: hidden;
     background-repeat: no-repeat;
     background-size: contain;
