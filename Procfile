@@ -1,0 +1,1 @@
+web: gunicorn sayyarati.wsgi
