@@ -1,24 +1,36 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block head %}
-
-{% endblock %} 
+<link rel="stylesheet" href="{% static 'css/cars/add_edit_form.css' %}" />
+{% endblock %}
 {% block content %}
 
-<div>
-  {% if car %}
-     <h1>Edit {{ car.name }}</h1>
-  {% else %}
-   <h1>Add a Car</h1>
-  {% endif %}
-</div>
 
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <button type="submit" >Submit!</button>
-</form>
 
-{% endblock %}
+<div class="container">
+
+  <div class="form-container">
+    <div class="title">
+      {% if car %}
+      <h1>Edit {{ car.name }}</h1>
+      {% else %}
+      <h1>Add a Car</h1>
+      {% endif %}
+    </div>
+    <form action="" method="post" enctype="multipart/form-data" class="add-car">
+      {% csrf_token %}
+      {% for field in form %}
+      <div style="margin-bottom: 15px;">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+        {% if form.instance.image %}
+        {% endif %}
+        {{ field }}
+        {% if field.errors %}
+        <div style="color: red;">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="add-car-btn">Submit!</button>
+    </form>
+  </div>
+  {% endblock %}
