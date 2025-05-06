@@ -1,0 +1,116 @@
+ @import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Doto:wght@100..900&family=Londrina+Shadow&family=Poiret+One&family=Signika:wght@300..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+body {
+    font-family: 'jaini', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    color: rgb(232, 252, 255);
+    font-size: 20px;
+}
+
+.add-car {
+    width: 100%;
+    padding: 0px 30px 0px 30px;
+    font-weight: bold;
+    margin-left: 8%;
+    margin-top: 40px;
+}
+
+input:not([type="checkbox"]) {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(15, 17, 76);
+    padding: 8px;
+    width: 80%;
+}
+
+.add-car-btn {
+    padding: 10px;
+    background-color: rgb(15, 17, 76);
+    color: white;
+    width: 60%;
+    border: none;
+    margin-top: 10px;
+    margin-left: 60px;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: 'jaini';
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+textarea[name="description"] {
+    height: 150px; 
+    resize: none; 
+    width: 80%; 
+    border: 2px solid rgb(15, 17, 76);
+}
+button:hover{
+    border: 2px solid rgb(15, 17, 76);
+    background-color: rgba(255, 255, 255, 0.712);
+    color: rgb(15, 17, 76);
+}
+input[type="file"] {
+    border: none !important;
+    padding: 0 !important;
+    color: black;
+    display: block;
+    margin-top: 5px;
+}
+input[type="file"]::file-selector-button {
+    padding: 8px;
+    background-color: rgb(15, 17, 76);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+select {
+    width: 80% !important; 
+    padding: 8px;
+    border: 2px solid rgb(15, 17, 76);
+    background-color: white;
+}
+
+input[type="checkbox"] {
+    margin-left: 80px;
+    margin-bottom: 12px;
+}
+
+
+select[name="your_select_field_name"] {
+    width: 80% !important;
+}
+.container {
+    width: 600px;
+    border: 4px solid rgb(15, 17, 76);
+    display: flex;
+    overflow: hidden;
+    margin: 100px auto; 
+    background: url("https://i.pinimg.com/736x/42/5e/78/425e78bc55f1d89d68e31176c1e72448.jpg");
+    background-position: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+
+.form-container {
+    width: 100%;
+    height: 100%;
+   
+}
+
+.title{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 24px;
+} 
