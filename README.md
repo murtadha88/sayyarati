@@ -3,7 +3,7 @@
 ![Logo](https://i.imgur.com/7S4BOdh.png)
 
 ## Description
-**Sayyarati** Sayyarati is a website designed for car dealers to easily manage (buy and sell) their car inventory and track the expenses and profit of each car.
+**Sayyarati** Sayyarati is a website designed for car dealers to easily manage (buy and sell) their car inventory and track the expenses and profit of each car. [Getting Started](https://sayyarati-9338cbd8bb7b.herokuapp.com/)
 
 ### Background Information
 Sayyarati is a simple yet powerful platform designed to help small car dealers effortlessly track their entire inventory lifecycle from purchase and repair costs to final sale. By centralizing all vehicle data in one place, it eliminates lost records, maximize profits, and gives dealers the tools to compete like larger businesses without the complexity or high costs.  it’s tailored for local dealerships to manage smarter, not harder.

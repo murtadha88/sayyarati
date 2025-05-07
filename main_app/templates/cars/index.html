@@ -14,6 +14,7 @@
 
   <div class="cars-grid">
       {% for car in cars %}
+      {% if car.status != 'Sold' %}
       <div class="car-card">
           <div class="car-img-container">
               {% if car.image %}
@@ -32,6 +33,7 @@
           </p>
           <a class="btn-more" href="/cars/{{ car.id }}">More</a>
       </div>
+      {% endif %}
       {% endfor %}
   </div>
 </div>
